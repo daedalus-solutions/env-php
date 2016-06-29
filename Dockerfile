@@ -32,7 +32,7 @@ ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid
  
 EXPOSE 80
-
+RUN mkdir /var/www/site
 RUN chown -R www-data:www-data /var/www/site/
  
 # Update the default apache site with the config we created.
