@@ -3,7 +3,8 @@
 # Based on phusion/baseimage
 ############################################################ 
 # Set the base image to phusion/baseimage
-FROM phusion/baseimage:latest
+FROM phusion/baseimage:0.9.18
+CMD ["/sbin/my_init"]
 
 # File Author / Maintainer
 MAINTAINER Jonathan Temlett - Daedalus Solutions (jono@daedalus.co.za)
