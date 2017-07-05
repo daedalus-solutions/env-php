@@ -43,7 +43,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 # Enable apache mods.
 RUN a2enmod php5.6
 RUN a2enmod rewrite
-RUN php5enmod mcrypt
+RUN update-alternatives --set php /usr/bin/php5.6
  
 # Update the PHP.ini file, enable <? ?> tags and quieten logging.
 RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/apache2/php.ini
