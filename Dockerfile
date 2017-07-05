@@ -3,25 +3,47 @@
 # Based on phusion/baseimage
 ############################################################ 
 # Set the base image to phusion/baseimage
-FROM phusion/baseimage:0.9.18
+FROM phusion/baseimage:latest
 CMD ["/sbin/my_init"]
 
 # File Author / Maintainer
 MAINTAINER Jonathan Temlett - Daedalus Solutions (jono@daedalus.co.za)
 
-RUN apt-get update
+RUN apt-add-repository -y ppa:ondrej/php
+RUN apt-get -y update
 RUN apt-get -y upgrade
 
 # Install apache, PHP, and supplimentary programs. curl and lynx-cur are for debugging the container.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
- apache2 libapache2-mod-php5 php5-mysql php-soap php-xml \
- php5-gd php-pear php-apc php5-curl curl lynx-cur php-mcrypt
+#RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-mysql php-soap php5-gd php-pear php-apc php5-curl curl lynx-cur php5-mcrypt
 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    apache2 \
+    libapache2-mod-php5.6 \
+    php5.6 \
+    curl \
+    lynx-cur
+    
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    php5.6-gd \
+    php5.6-apc \
+    php5.6-mysql \
+    php5.6-dom \
+    php5.6-cli \
+    php5.6-json \
+    php5.6-common \
+    php5.6-mbstring \
+    php5.6-opcache \
+    php5.6-readline \
+    php5.6-curl \
+    php5.6-mcrypt \
+    php5.6-soap
+    
 #RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-json  
  
 # Enable apache mods.
-RUN a2enmod php5
+RUN a2enmod php5.6
 RUN a2enmod rewrite
+RUN php5enmod mcrypt
  
 # Update the PHP.ini file, enable <? ?> tags and quieten logging.
 RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/apache2/php.ini
