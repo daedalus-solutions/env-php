@@ -49,7 +49,7 @@ RUN update-alternatives --set php /usr/bin/php5.6
 RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php/5.6/apache2/php.ini
 RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php/5.6/apache2/php.ini
 RUN sed -i "s/^upload_max_filesize.*/upload_max_filesize = 256M/" /etc/php/5.6/apache2/php.ini
-RUN sed -i "s/^post_max_size.*/post_max_size = 256M/" /etc/php5/apache/5.6/php.ini
+RUN sed -i "s/^post_max_size.*/post_max_size = 256M/" /etc/php/5.6/apache2/php.ini
  
 # Manually set up the apache environment variables
 ENV APACHE_RUN_USER www-data
