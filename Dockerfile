@@ -36,7 +36,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php5.6-readline \
     php5.6-curl \
     php5.6-mcrypt \
-    php5.6-soap
+    php5.6-soap \ 
+    php5.6-zip
     
 #RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-json  
  
